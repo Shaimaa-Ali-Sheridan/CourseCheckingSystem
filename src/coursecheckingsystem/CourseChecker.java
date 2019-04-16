@@ -11,6 +11,16 @@ package coursecheckingsystem;
  * @author shaim
  */
 public class CourseChecker {
+    private static CourseChecker onlyObject = null;
+    private CourseChecker()
+    {}
+    public static CourseChecker getInstance()
+    {
+        if (onlyObject == null)
+            onlyObject = new CourseChecker();
+        return onlyObject;
+    }
+    
     public static String[] GRADE_CATEGORY = {"Exams", "Assignments"};
     public static int EXAMS_WIEGHT = 40;
     public static int ASSIGNMENTS_WIEGHT = 60;

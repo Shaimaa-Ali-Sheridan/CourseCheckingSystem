@@ -13,7 +13,7 @@ public class CourseCheckingSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        CourseChecker cc = new CourseChecker();
+        CourseChecker cc =  CourseChecker.getInstance();
         Scanner sc = new Scanner(System.in);
         
         System.out.println("Please enter the Student name");
@@ -52,7 +52,10 @@ public class CourseCheckingSystem {
         double assignmentsPercentage = cc.getAssignmentsTotalGrade() / CourseChecker.ASSIGNMENTS_WIEGHT * 100;
         System.out.println("Percentage of the assignments is:"+  assignmentsPercentage);
     
-        if (examsPercentage >= 50 && assignmentsPercentage >= 50)
+        //We'll assume that both percentages have the same wieght for the sake of simplicity
+        double totalPercentage = examsPercentage + assignmentsPercentage;
+        
+        if (PassingGradeValidator.isPassingGrade(totalPercentage))
             System.out.println("Pass");
         else
             System.out.println("Fail");
